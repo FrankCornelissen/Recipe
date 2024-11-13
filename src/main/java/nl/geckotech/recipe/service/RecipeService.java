@@ -4,6 +4,8 @@ import nl.geckotech.recipe.dao.RecipeDao;
 import nl.geckotech.recipe.dto.RecipeRequest;
 import nl.geckotech.recipe.dto.RecipeResponse;
 import nl.geckotech.recipe.entity.Recipe;
+import nl.geckotech.recipe.entity.type.RecipeTypeOfMeal;
+import nl.geckotech.recipe.exception.RecipeNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,8 +25,20 @@ public class RecipeService {
         return convert(recipeDao.getAllRecipes());
     }
 
+    public RecipeResponse getRecipe(Long id) throws RecipeNotFoundException {
+        return convert(recipeDao.getRecipe(id));
+    }
+
+    public RecipeResponse getRecipeByType(RecipeTypeOfMeal typeOfMeal) throws RecipeNotFoundException {
+        return convert(recipeDao.getRecipeByType(typeOfMeal));
+    }
+
     public RecipeResponse createRecipe(RecipeRequest recipeRequest){
         Recipe recipe = convert(recipeRequest);
         return convert(recipeDao.createRecipe(recipe));
+    }
+
+    public RecipeResponse deleteRecipe(Long id) throws RecipeNotFoundException {
+        return convert(recipeDao.deleteRecipe(id));
     }
 }

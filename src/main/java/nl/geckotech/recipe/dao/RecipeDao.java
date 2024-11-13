@@ -19,6 +19,10 @@ public class RecipeDao {
         this.recipeRepository = recipeRepository;
     }
 
+    public List<Recipe> getAllRecipes() {
+        return recipeRepository.findAll();
+    };
+
     public Recipe getRecipe(Long id) throws RecipeNotFoundException {
         Optional<Recipe> recipe = recipeRepository.findById(id);
 
@@ -37,10 +41,6 @@ public class RecipeDao {
 
         return recipe.get();
     }
-
-    public List<Recipe> getAllRecipes() {
-        return recipeRepository.findAll();
-    };
 
 //    TODO throws DataIntegrityViolationException
     public Recipe createRecipe(Recipe recipe) {

@@ -29,8 +29,8 @@ public class RecipeDao {
 
     }
 
-    public Recipe getRecipeByType(RecipeTypeOfMeal typeOfMeal) throws RecipeNotFoundException {
-        Optional<Recipe> recipe = recipeRepository.getRecipeByType(typeOfMeal);
+    public Recipe findByTypeOfMeal(RecipeTypeOfMeal typeOfMeal) throws RecipeNotFoundException {
+        Optional<Recipe> recipe = recipeRepository.findByTypeOfMeal(typeOfMeal);
 
         if (recipe.isEmpty())
             throw new RecipeNotFoundException("There are no meals with this type: " + typeOfMeal.toString());

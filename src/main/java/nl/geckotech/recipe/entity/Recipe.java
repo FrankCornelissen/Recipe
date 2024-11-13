@@ -3,6 +3,7 @@ package nl.geckotech.recipe.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import nl.geckotech.recipe.entity.type.RecipeTypeOfMeal;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,7 +31,8 @@ public class Recipe {
 
     //   Enum value
     @Column(name = "type_of_meal")
-    private Enum typeOfMeal;
+    @Enumerated(EnumType.STRING)
+    private RecipeTypeOfMeal typeOfMeal;
 
     @ManyToMany(mappedBy = "recipes")
     private Set<Ingredients> ingredients = new HashSet<>();
@@ -39,7 +41,7 @@ public class Recipe {
         this.name = name;
     }
 
-    public Recipe(String name, String description, int timeToCook, Enum typeOfMeal, Set<Ingredients> ingredients) {
+    public Recipe(String name, String description, int timeToCook, RecipeTypeOfMeal typeOfMeal, Set<Ingredients> ingredients) {
         this.name = name;
         this.description = description;
         this.timeToCook = timeToCook;

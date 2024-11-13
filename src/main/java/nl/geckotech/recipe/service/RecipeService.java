@@ -29,8 +29,8 @@ public class RecipeService {
         return convert(recipeDao.getRecipe(id));
     }
 
-    public RecipeResponse getRecipeByType(RecipeTypeOfMeal typeOfMeal) throws RecipeNotFoundException {
-        return convert(recipeDao.getRecipeByType(typeOfMeal));
+    public RecipeResponse findByTypeOfMeal(RecipeTypeOfMeal typeOfMeal) throws RecipeNotFoundException {
+        return convert(recipeDao.findByTypeOfMeal(typeOfMeal));
     }
 
     public RecipeResponse createRecipe(RecipeRequest recipeRequest){

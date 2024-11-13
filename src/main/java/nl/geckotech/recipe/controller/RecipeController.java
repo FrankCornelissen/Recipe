@@ -48,10 +48,10 @@ public class RecipeController {
         );
     }
 
-    @GetMapping(path = "/id", produces = "application/json")
-    public ResponseEntity<RecipeResponse> getRecipeByType(@RequestParam(name = "type") RecipeTypeOfMeal typeOfMeal ) throws RecipeNotFoundException {
+    @GetMapping(path = "/typeOfMeal", produces = "application/json")
+    public ResponseEntity<RecipeResponse> findByTypeOfMeal(@RequestParam(name = "typeOfMeal") RecipeTypeOfMeal typeOfMeal ) throws RecipeNotFoundException {
         return new ResponseEntity<> (
-                recipeService.getRecipeByType(typeOfMeal),
+                recipeService.findByTypeOfMeal(typeOfMeal),
                 createHeader("Recipe type of meal", typeOfMeal.toString()),
                 HttpStatus.OK
         );
@@ -67,7 +67,7 @@ public class RecipeController {
         );
     }
 
-    @DeleteMapping(path = "/", produces = "application/json")
+    @DeleteMapping(path = "/id", produces = "application/json")
     public ResponseEntity<RecipeResponse> deleteRecipe(@RequestParam(name = "id") Long id) throws RecipeNotFoundException {
         return new ResponseEntity<>(
                 recipeService.deleteRecipe(id),

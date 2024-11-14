@@ -51,13 +51,11 @@ public class RecipeDao {
     }
 
     public Recipe deleteRecipe(Long id) throws RecipeNotFoundException {
-        Optional<Recipe> recipe = recipeRepository.findById(id);
+        Recipe recipe = recipeRepository.findById(id)
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe not found"));
+        recipeRepository.delete(recipe);
 
-        if (recipe.isEmpty())
-            throw new RecipeNotFoundException("Recipe not found");
-
-        return recipe.get();
-
+        return new Recipe();
     }
 
 }

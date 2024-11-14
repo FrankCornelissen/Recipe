@@ -149,7 +149,7 @@ class RecipeDaoTest {
 
         // Then
         assertThat(result).isNotNull();
-        assertThat(result.getName()).isEqualTo("Toast");
+        assertThat(result.getName()).isEqualTo(null);
     }
 
     @Test

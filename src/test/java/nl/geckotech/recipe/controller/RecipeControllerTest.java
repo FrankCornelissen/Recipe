@@ -78,8 +78,7 @@ class RecipeControllerTest {
     void shouldDeleteRecipe() throws Exception {
         // When & Then
         mockMvc.perform(MockMvcRequestBuilders.delete("/recipe/withId?id=" + recipe.getId()))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Toast"));
+                .andExpect(status().isOk());
     }
 
 

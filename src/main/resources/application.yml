@@ -1,9 +1,7 @@
-spring.jpa:
-  hibernate.ddl-auto: create-drop
-  show-sql: false
-
-spring.datasource:
-  driverClassName: org.postgresql.Driver
-  url: jdbc:postgresql://${databaseLink}
-  username: ${dbUsername}
-  password: ${dbPassword}
+spring:
+  datasource:
+    url: "jdbc:tc:postgresql:bullseye:///db?TC_DAEMON=true"
+    driverClassName: "org.testcontainers.jdbc.ContainerDatabaseDriver"
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

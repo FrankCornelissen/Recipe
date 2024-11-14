@@ -1,5 +1,6 @@
 package nl.geckotech.recipe.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,8 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "ingredients")
-public class Ingredients {
+@Table(name = "ingredient")
+public class Ingredient {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -32,4 +33,9 @@ public class Ingredients {
             inverseJoinColumns = { @JoinColumn(name = "recipe_id") }
     )
     Set<Recipe> recipes = new HashSet<>();
+
+    public Ingredient(String name, int amount) {
+        this.name = name;
+        this.amount = amount;
+    }
 }

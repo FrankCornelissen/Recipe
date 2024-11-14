@@ -1,6 +1,5 @@
 package nl.geckotech.recipe.controller;
 
-import ch.qos.logback.core.util.StringUtil;
 import io.micrometer.common.util.StringUtils;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -19,7 +18,7 @@ import java.util.Set;
 @ControllerAdvice
 public class RecipeControllerAdvice extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler
+    @ExceptionHandler(RecipeNotFoundException.class)
     protected ResponseEntity<ErrorResponse> handleRecipeNotFound(RecipeNotFoundException recipeNotFoundException){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setErrorCode("RECIPE_NOT_FOUND");
@@ -31,7 +30,7 @@ public class RecipeControllerAdvice extends ResponseEntityExceptionHandler {
         );
     }
 
-    @ExceptionHandler
+    @ExceptionHandler(DataIntegrityViolationException.class)
     protected ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException dataIntegrityViolationException){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setErrorCode("BAD_INPUT");
@@ -43,7 +42,7 @@ public class RecipeControllerAdvice extends ResponseEntityExceptionHandler {
         );
     }
 
-    @ExceptionHandler
+    @ExceptionHandler(ConstraintViolationException.class)
     protected ResponseEntity<ErrorResponse> handleConstraintViolationException(ConstraintViolationException constraintViolationException){
         Set<ConstraintViolation<?>> violations = constraintViolationException.getConstraintViolations();
         List<String> violationList = violations

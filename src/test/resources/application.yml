@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: "jdbc:tc:postgresql:bullseye:///db?TC_DAEMON=true"
+    driverClassName: "org.testcontainers.jdbc.ContainerDatabaseDriver"
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

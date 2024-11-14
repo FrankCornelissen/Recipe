@@ -1,5 +1,6 @@
 package nl.geckotech.recipe.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,13 +36,20 @@ public class Recipe {
     private RecipeTypeOfMeal typeOfMeal;
 
     @ManyToMany(mappedBy = "recipes")
-    private Set<Ingredients> ingredients = new HashSet<>();
+    @JsonIgnore
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     public Recipe(String name) {
         this.name = name;
     }
 
-    public Recipe(String name, String description, int timeToCook, RecipeTypeOfMeal typeOfMeal, Set<Ingredients> ingredients) {
+    public Recipe(String name, String description, int timeToCook) {
+        this.name = name;
+        this.description = description;
+        this.timeToCook = timeToCook;
+    }
+
+    public Recipe(String name, String description, int timeToCook, RecipeTypeOfMeal typeOfMeal, Set<Ingredient> ingredients) {
         this.name = name;
         this.description = description;
         this.timeToCook = timeToCook;

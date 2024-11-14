@@ -38,6 +38,6 @@ public class ErrorResponse {
         this.errorMessages = errorMessages;
     }
     public void setErrorMessages(String errorMessages) {
-        setErrorMessages(String.valueOf(List.of(errorMessages)));
+        setErrorMessages(List.of(errorMessages));
     }
 }

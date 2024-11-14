@@ -3,8 +3,10 @@ package nl.geckotech.recipe.dao;
 import nl.geckotech.recipe.entity.Recipe;
 import nl.geckotech.recipe.entity.type.RecipeTypeOfMeal;
 import nl.geckotech.recipe.exception.RecipeNotFoundException;
+import nl.geckotech.recipe.repository.IngredientRepository;
 import nl.geckotech.recipe.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +14,11 @@ import java.util.Optional;
 
 @Service
 public class RecipeDao {
-    private final RecipeRepository recipeRepository;
 
     @Autowired
+    IngredientRepository ingredientRepository;
+    private final RecipeRepository recipeRepository;
+
     public RecipeDao(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
@@ -42,8 +46,7 @@ public class RecipeDao {
         return recipe.get();
     }
 
-//    TODO throws DataIntegrityViolationException
-    public Recipe createRecipe(Recipe recipe) {
+    public Recipe createRecipe(Recipe recipe) throws DataIntegrityViolationException {
         return recipeRepository.save(recipe);
     }
 

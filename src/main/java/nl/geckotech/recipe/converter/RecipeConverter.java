@@ -11,7 +11,9 @@ public class RecipeConverter {
 
     public static Recipe convert(RecipeRequest recipeRequest) {
         return new Recipe(
-                recipeRequest.getName()
+                recipeRequest.getName(),
+                recipeRequest.getDescription(),
+                recipeRequest.getTimeToCook()
         );
     }
 
